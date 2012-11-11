@@ -21,6 +21,7 @@ typedef enum  {
     KITBMediaItemPropertyAlbum
 } KITBMediaItemProperty;
 
+-(NSUInteger)indexOfObject:(KITBMediaItem *)anObject;
 - (KITBMediaItem *) objectAtIndex:(unsigned)index;
 - (KITBMediaCollection *)initWithItems:(NSArray *)newiTems;
 - (KITBMediaCollection *)sortBy:(KITBMediaItemProperty)property ascending:(BOOL)asc;

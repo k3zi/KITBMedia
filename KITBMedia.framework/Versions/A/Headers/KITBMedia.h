@@ -10,6 +10,7 @@
 #import "KITBMediaItem.h"
 #import "KITBMediaCollection.h"
 #import "KITBMediaLibrary.h"
+#import "KITBMediaPlayer.h"
 
 @interface KITBMedia : NSObject
 
