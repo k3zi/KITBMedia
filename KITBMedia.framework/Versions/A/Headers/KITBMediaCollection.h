@@ -21,11 +21,14 @@ typedef enum  {
     KITBMediaItemPropertyAlbum
 } KITBMediaItemProperty;
 
--(NSUInteger)indexOfObject:(KITBMediaItem *)anObject;
+- (KITBMediaCollection *)sortBy:(KITBMediaItemProperty)property ascending:(BOOL)asc;
+- (KITBMediaCollection *)searchBy:(KITBMediaItemProperty)property for:(NSString *)string;
+- (KITBMediaCollection *)searchAllPropertysFor:(NSString *)string;
+- (KITBMediaCollection *)shuffle;
+
+- (NSUInteger)indexOfObject:(KITBMediaItem *)anObject;
 - (KITBMediaItem *) objectAtIndex:(unsigned)index;
 - (KITBMediaCollection *)initWithItems:(NSArray *)newiTems;
-- (KITBMediaCollection *)sortBy:(KITBMediaItemProperty)property ascending:(BOOL)asc;
-
 - (unsigned) count;
 
 

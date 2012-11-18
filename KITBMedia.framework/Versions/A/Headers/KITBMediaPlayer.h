@@ -8,16 +8,38 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "KITBMediaItem.h"
 #import "KITBMediaCollection.h"
 
-@interface KITBMediaPlayer : NSObject <AVAudioPlayerDelegate> {
-    AVAudioPlayer *player;
+@protocol KITBMediaPlayerDelegate;
+
+@interface KITBMediaPlayer : UIResponder <AVAudioPlayerDelegate> {
+    AVAudioPlayer *mediaPlayer;
     int currentQueueID;
+    id<KITBMediaPlayerDelegate> delegate;
     int currentCollectionIndex;
     KITBMediaCollection *currentCollection;
+    BOOL playing;
 }
 
--(void)playSongAtIndex:(unsigned)index inCollection:(KITBMediaCollection *)collection;
 
+@property (strong, nonatomic) AVAudioPlayer *mediaPlayer;
+@property int currentQueueID;
+@property int currentCollectionIndex;
+@property BOOL playing;
+@property (nonatomic, strong)id<KITBMediaPlayerDelegate> delegate;
+
+-(void)playSongAtIndex:(unsigned)index inCollection:(KITBMediaCollection *)collection;
+-(void)skipToNextSong;
+-(void)skipToPreviousSong;
+
+-(KITBMediaItem *)nowPlayingItem;
+
+@end
+
+@protocol KITBMediaPlayerDelegate <NSObject>
+@optional
+- (void)player:(KITBMediaPlayer *)player didChangeSongTo:(KITBMediaItem *)song;
+- (void)player:(KITBMediaPlayer *)player didReachEndOfCollection:(KITBMediaCollection *)collection;
 @end
